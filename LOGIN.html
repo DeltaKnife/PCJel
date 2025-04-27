@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+<script src="https://cdn.tailwindcss.com"></script>
+<title>PCJEL - Account Portal</title>
+<link rel="stylesheet" href="reg.css">
+</head>
+
+<body>
+
+  <script>
+    function GoToRegistration() {
+    window.location.href = "Registration.html";
+  }
+
+    function login(event) {
+      event.preventDefault();
+  
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+ 
+      const storedEmail = localStorage.getItem("Regemail");
+      const storedPassword = localStorage.getItem("Regpassword");
+  
+      if (email === storedEmail && password === storedPassword) {
+        alert("Login successful!");
+        window.location.href = "homepage.html";
+        
+      } else {
+        alert("Invalid email or password. Try again!");
+      }
+    }
+  </script>
+  
+  <header>
+  <div class="top-bar">
+    <div class="logo">PCJEL</div>
+  </div>
+  <div class="Regis"> ACCOUNT PORTAL </div>
+  </header>
+  <div class="flex justify-center items-center mt-10">
+    <div class="w-full max-w-md bg-gray-100 p-6 rounded-lg shadow-lg">
+      <form onsubmit="login(event)">
+        <h2 class="text-2xl font-bold text-center mb-6">Your PCJEL Account</h2>
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email:</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        </div>
+        <div class="mb-4">
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+        <button type="submit"
+          class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition duration-300">
+        Continue
+        </button>
+        <div class="text-center mt-6">
+          <p class="text-gray-700 mb-3">Don't have an account yet?</p>
+          <button type="button" onclick="GoToRegistration()"
+            class="inline-block bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300">
+            Create an Account
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

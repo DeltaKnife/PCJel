@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PCJEL - Home</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="top-bar">
+      <div class="logo">PCJEL</div>
+      
+      <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search...">
+      </div>
+    
+      <button class="loginbutton" id="loginBtn">Login</button>
+    </div>
+    </div>
+    </div>
+      <div>
+      <nav>
+      <ul>
+        <li><a href="#">Home Page</a></li>
+        <li><a href="#">PC Builds</a></li>
+        <li><a href="#">Parts</a></li>
+        <li><a href="#">Peripherals</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </nav>
+    </div>
+  </header>
+  
+  <section class="hero">
+    <div class="hero-text">
+      <h1>PC Hardware & Services</h1>
+      <p1>Unlock the Future of PC Builds and Upgrades</p1>
+      <p>Discover the latest in custom PC builds, high-performance parts, and top-tier peripherals. Get expert insights on the best components, trends in gaming and productivity, and professional assembly services.</p>
+      <a href="#" class="btn">[Browse Our Selection]</a>
+   </div>
+   <div class="hero-img">
+        <img src="images/Iso.png" alt="Graphic">
+   </div>
+  </section>
+  <section class="featured">
+      <div class="featured-item">
+        <img src="images/Desktop.png" alt="Gaming PC">
+        <div class="featured-text">
+        <h2>ENHANCE YOUR GAMING EXPERIENCE</h2>
+        <p>HIGH FRAMES. WIN GAMES.</p>
+        <a href="#">Explore</a>
+        </div>
+       </div>
+ </section>
+ <section class="product-showcase">
+   <div class="product">
+   
+     <h2>GeForce RTX 5090</h2>
+     <p>Ultimate Power. Unrivaled Performance.</p>
+     <img src="images/GPU.png" alt="RTX 5090">
+     <div class="cta">
+     <a href="#">Explore </a> <a href="#">BUY</a>
+   </div>
+  </div>
+   <div class="product">
+   <h2>RAZER BLACKSHARK V2</h2>
+   <p>Live the Game. Hear the Win.</p>
+   <img src="images/headphones.png" alt="Razer Headset">
+
+   <div class="cta">
+   <a href="#">Explore </a> <a href="#">BUY</a>
+   </div>
+  </div>
+ </section>
+ <script>
+  const loginButton = document.getElementById('loginBtn');
+  
+  loginButton.addEventListener('click', function() {
+    window.location.href = 'LOGIN.html';
+  });
+
+  const allLinks = document.querySelectorAll('a');
+
+  allLinks.forEach(link => {
+    if (link.textContent.trim().toUpperCase() === 'BUY') {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.location.href = 'addtocart.html';
+      });
+    } else {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        alert("Coming soon!");
+      });
+    }
+  });
+</script>
+</body>
+<footer>
+  <div class="footer-container">
+      <div class="footer-info">
+          <h3>WHAT DO WE OFFER?</h3>
+          <p>
+              PCJEL’s web portal offers a premium selection of custom-built PCs, top-tier peripherals from leading brands, and high-performance components, including GPUs, CPUs, motherboards, and more.
+          </p>
+      </div>
+
+      <div class="footer-links">
+          <div class="footer-column">
+              <h4>Support</h4>
+              <a href="#">Get Help</a>
+          </div>
+          <div class="footer-column">
+              <h4>Company</h4>
+              <a href="#">About Us</a>
+              <a href="#">Contact Us</a>
+          </div>
+          <div class="footer-column">
+              <h4>Follow Us</h4>
+              <div class="social-icons">
+                  <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+                  <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
+                  <a href="#"><img src="images/gmail.png" alt="Email"></a>
+              </div>
+          </div>
+      </div>
+
+      <div class="footer-brand">
+          <p class="tagline">POWERING YOUR PERFORMANCE, <br> <span class="tagline-highlight">ONE BUILD AT A TIME.</span></p>
+          <h1 class="logo">PCJEL</h1>
+      </div>
+  </div>
+</footer>
+</html>

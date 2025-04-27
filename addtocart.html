@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<head>
+<script src="https://cdn.tailwindcss.com"></script>
+<title>PCJEL - Add to Cart</title>
+<link rel="stylesheet" href="addtocart.css">
+</head>
+
+<body>
+
+  <header>
+  <div class="top-bar">
+    <div class="logo">PCJEL</div>
+    <div class="search-container">
+    <input type="text" class="search-bar" placeholder="Search...">
+    </div>
+    </div>
+      <div>
+      <nav>
+      <ul>
+        <li><a href="#">Home Page</a></li>
+        <li><a href="#">PC Builds</a></li>
+        <li><a href="#">Parts</a></li>
+        <li><a href="#">Peripherals</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </nav>
+    </div>
+  </header>
+
+ <main class="bg-gray-900 text-white min-h-screen p-6">
+  <section class="text-center mb-6">
+    <h2 class="text-2xl font-bold">Your cart total is ₱<span id="cart-total">0</span></h2>
+  </section>
+
+  <section id="cart" 
+           class="min-h-[500px] border-4 border-solid border-gray-600 bg-gray-800 rounded-xl p-10 mb-10 transition-all duration-300"
+           ondrop="drop(event)" ondragover="allowDrop(event)">
+    <!-- Dropped products will appear here -->
+  </section>
+
+  <section>
+    <h3 class="text-xl font-semibold mb-2">Product List:</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div draggable="true" 
+           ondragstart="drag(event)" 
+           id="product1" 
+           data-name="GeForce RTX 5090" 
+           data-price="145000"
+           class="bg-gray-700 hover:bg-gray-600 transition-colors p-4 rounded-lg text-center cursor-grab">
+        GeForce RTX 5090 - ₱145,000
+      </div>
+      <div draggable="true" 
+           ondragstart="drag(event)" 
+           id="product2" 
+           data-name="BLACKSHARK V2" 
+           data-price="2995"
+           class="bg-gray-700 hover:bg-gray-600 transition-colors p-4 rounded-lg text-center cursor-grab">
+        BLACKSHARK V2 - ₱2,995
+      </div>
+      
+    </div>
+  </section>
+</main>
+
+<script>
+  let cart = {};
+
+  function allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+
+  function drop(ev) {
+    ev.preventDefault();
+    const productId = ev.dataTransfer.getData("text");
+    const productElem = document.getElementById(productId);
+    const productName = productElem.getAttribute("data-name");
+    const price = parseInt(productElem.getAttribute("data-price"));
+
+    if (!cart[productId]) {
+      cart[productId] = { name: productName, quantity: 1, price: price };
+    } else {
+      cart[productId].quantity += 1;
+    }
+
+    renderCart();
+  }
+
+  function updateQuantity(productId, change) {
+    if (cart[productId]) {
+      cart[productId].quantity += change;
+      if (cart[productId].quantity <= 0) delete cart[productId];
+    }
+    renderCart();
+  }
+
+  function renderCart() {
+    const cartDiv = document.getElementById("cart");
+    cartDiv.innerHTML = "";
+    let total = 0;
+
+    for (let id in cart) {
+      const item = cart[id];
+      total += item.quantity * item.price;
+
+      const cartItem = document.createElement("div");
+      cartItem.className = "flex justify-between items-center bg-gray-700 p-3 rounded-lg mb-3";
+
+      cartItem.innerHTML = `
+        <div class="flex-1"><strong>${item.name}</strong></div>
+        <div class="flex items-center gap-2">
+          <button onclick="updateQuantity('${id}', -1)" class="bg-red-500 hover:bg-red-600 px-2 py-1 rounded">-</button>
+          <span>${item.quantity}</span>
+          <button onclick="updateQuantity('${id}', 1)" class="bg-green-500 hover:bg-green-600 px-2 py-1 rounded">+</button>
+        </div>
+        <div class="w-24 text-right">₱${item.quantity * item.price}</div>
+      `;
+      cartDiv.appendChild(cartItem);
+    }
+
+    document.getElementById("cart-total").innerText = total;
+  }
+</script>
+</body>
+</html>
