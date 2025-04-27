@@ -73,9 +73,9 @@
    </div>
   </div>
  </section>
- <script>
+<script>
   const loginButton = document.getElementById('loginBtn');
-  
+
   loginButton.addEventListener('click', function() {
     window.location.href = 'LOGIN.html';
   });
@@ -83,16 +83,20 @@
   const allLinks = document.querySelectorAll('a');
 
   allLinks.forEach(link => {
-    if (link.textContent.trim().toUpperCase() === 'BUY') {
-      link.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = 'addtocart.html';
-      });
-    } else {
-      link.addEventListener('click', function(event) {
-        event.preventDefault();
-        alert("Coming soon!");
-      });
+    const href = link.getAttribute('href');
+
+    if (href === '#') {
+      if (link.textContent.trim().toUpperCase() === 'BUY') {
+        link.addEventListener('click', function(event) {
+          event.preventDefault();
+          window.location.href = 'addtocart.html';
+        });
+      } else {
+        link.addEventListener('click', function(event) {
+          event.preventDefault();
+          alert("Coming soon!");
+        });
+      }
     }
   });
 </script>
